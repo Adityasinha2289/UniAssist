@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UniAssist · Bennett University</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="chat.js" defer></script>
+
+
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo-area">
+  <img src="/assets/logo.png" alt="UniAssist Logo" class="logo" />
+
+  <div class="brand-text">
+    <div class="title">UniAssist</div>
+    <div class="subtitle">Bennett University · Official Rules Assistant</div>
+  </div>
+</div>
+
+</div>
+
+<!-- CHAT AREA -->
+<div id="chatBox" class="chat-box"></div>
+
+<!-- INPUT BAR -->
+<div class="input-bar">
+  <input
+    type="text"
+    id="userInput"
+    placeholder="Ask about attendance, exams, hostel rules, outpasses..."
+    autocomplete="off"
+  />
+  <button onclick="sendMessage()">Ask</button>
+</div>
+
+<!-- PENALTY CALCULATOR ENTRY -->
+<a href="penalty/penalty.html" target="_blank" class="penalty-btn">
+  ⚠️ Penalty Calculator
+</a>
+
+<script src="js/chat.js"></script>
+</body>
+</html>

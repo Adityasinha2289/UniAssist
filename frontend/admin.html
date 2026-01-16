@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UniAssist Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="admin-container">
+  <h2>UniAssist Admin Dashboard</h2>
+
+  <input type="password" id="password" placeholder="Admin password" />
+
+  <input type="file" id="pdfFile" accept=".pdf" />
+
+  <div class="admin-actions">
+    <button onclick="uploadPDF()">Upload PDF</button>
+    <button onclick="reindex()">Reindex Knowledge</button>
+  </div>
+
+  <p id="status"></p>
+
+  <hr style="margin:20px 0;opacity:0.2">
+
+  <h3>Most Asked Questions</h3>
+  <button onclick="loadAnalytics()">Refresh Analytics</button>
+
+  <ul id="analyticsList" style="margin-top:12px;"></ul>
+</div>
+
+<script>
+async function uploadPDF() {
+  const file = document.getElementById("pdfFile").files[0];
+  const password = document.getElementById("password").value;
+  const status = document.getElementById("status");
+
+  if (!file) {
+    status.innerText = "Please select a PDF file.";
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("password", password);
+
+  const res = await fetch("http://127.0.0.1:5000/admin/upload", {
+    method: "POST",
+    body: formData
+  });
+
+  const data = await res.json();
+  status.innerText = data.message || data.error;
+}
+
+async function reindex() {
+  const password = document.getElementById("password").value;
+  const status = document.getElementById("status");
+
+  const res = await fetch("http://127.0.0.1:5000/admin/reindex", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ password })
+  });
+
+  const data = await res.json();
+  status.innerText = data.message || data.error;
+}
+
+async function loadAnalytics() {
+  const password = document.getElementById("password").value;
+  const list = document.getElementById("analyticsList");
+
+  const res = await fetch(
+    `http://127.0.0.1:5000/admin/analytics?password=${password}`
+  );
+
+  const data = await res.json();
+  list.innerHTML = "";
+
+  if (!data.top_questions || data.top_questions.length === 0) {
+    list.innerHTML = "<li>No data available</li>";
+    return;
+  }
+
+  data.top_questions.forEach(item => {
+    const li = document.createElement("li");
+    li.innerText = `${item.question} (${item.count})`;
+    list.appendChild(li);
+  });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UniAssist · Penalty Calculator</title>
+  <link rel="stylesheet" href="penalty.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Penalty Calculator</h1>
+  <p class="subtitle">Based on official university discipline rules</p>
+
+  <div class="card">
+    <label>Type of Offence</label>
+    <select id="offence">
+      <option value="">Select offence</option>
+      <option value="cooking_in_hostel">Cooking in hostel room</option>
+      <option value="alcohol">Alcohol possession / consumption</option>
+    </select>
+
+    <label>Number of times committed</label>
+    <select id="count">
+      <option value="1">First time</option>
+      <option value="2">Second time</option>
+      <option value="3">Third time or more</option>
+    </select>
+
+    <button onclick="calculatePenalty()">Calculate Penalty</button>
+  </div>
+
+  <div id="result" class="result hidden"></div>
+
+  <p class="disclaimer">
+    ⚠️ Penalties shown are indicative. Final decision rests with the University Proctorial Committee.
+  </p>
+</div>
+
+<script src="penalty.js"></script>
+</body>
+</html>

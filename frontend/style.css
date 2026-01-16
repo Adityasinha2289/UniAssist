@@ -1,0 +1,392 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* ======================================================
+   ROOT VARIABLES
+====================================================== */
+:root {
+  --bg-dark: #020617;
+  --bg-light: #0f172a;
+  --bg-radial: radial-gradient(circle at top, #1e293b, #020617);
+
+  --card: rgba(255,255,255,0.08);
+  --card-strong: rgba(255,255,255,0.12);
+
+  --border: rgba(255,255,255,0.15);
+
+  --accent: linear-gradient(135deg, #6366f1, #22d3ee);
+  --accent-solid: #38bdf8;
+
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 26px;
+}
+
+/* ======================================================
+   RESET + GLOBAL
+====================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--text-main);
+}
+
+body {
+  background: var(--bg-radial);
+  overflow: hidden;
+}
+
+/* ======================================================
+   LANDING / INDEX PAGE
+====================================================== */
+.landing-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-card {
+  width: 360px;
+  padding: 42px 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(22px);
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+}
+
+.landing-logo {
+  width: 140px;
+  margin-bottom: 24px;
+}
+
+.landing-title {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.tagline {
+  margin-top: 10px;
+  margin-bottom: 28px;
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.select-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--accent);
+  color: #020617;
+}
+
+.select-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(34,211,238,0.35);
+}
+
+/* ======================================================
+   CHAT PAGE WRAPPER
+====================================================== */
+.chat-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ======================================================
+   HEADER
+====================================================== */
+.header {
+  height: 72px;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  z-index: 10;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.brand-text .title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.brand-text .subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ======================================================
+   CHAT SCROLL AREA
+====================================================== */
+.chat-box {
+  position: fixed;
+  top: 72px;
+  bottom: 86px;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* ======================================================
+   MESSAGE BUBBLES
+====================================================== */
+.message {
+  max-width: 75%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  animation: fadeIn 0.25s ease;
+}
+
+.message.user {
+  margin-left: auto;
+  background: var(--accent);
+  color: #020617;
+}
+
+.message.bot {
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ======================================================
+   ANSWER FORMATTING
+====================================================== */
+.answer-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.source {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ======================================================
+   NUMBER HIGHLIGHT
+====================================================== */
+.highlight {
+  font-weight: 600;
+  color: var(--accent-solid);
+  background: rgba(56,189,248,0.15);
+  padding: 2px 6px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+/* ======================================================
+   COLLAPSIBLE ANSWERS
+====================================================== */
+.answer-collapsed {
+  max-height: 160px;
+  overflow: hidden;
+  position: relative;
+}
+
+.answer-collapsed::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(15,23,42,0), rgba(15,23,42,1));
+}
+
+.answer-expanded {
+  max-height: none;
+}
+
+.toggle-btn {
+  margin-top: 8px;
+  background: none;
+  border: none;
+  color: var(--accent-solid);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ======================================================
+   FOLLOW-UP SUGGESTIONS
+====================================================== */
+.followups {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.followup-chip {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+}
+
+.followup-chip:hover {
+  background: rgba(56,189,248,0.25);
+}
+
+/* ======================================================
+   INPUT BAR
+====================================================== */
+.input-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 16px;
+  display: flex;
+  gap: 10px;
+  background: rgba(2,6,23,0.95);
+  border-top: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  z-index: 10;
+}
+
+.input-bar input {
+  flex: 1;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.08);
+  color: var(--text-main);
+  font-size: 14px;
+}
+
+.input-bar button {
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  border: none;
+  font-weight: 600;
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  color: #020617;
+  cursor: pointer;
+}
+
+/* ======================================================
+   TYPING INDICATOR
+====================================================== */
+.typing {
+  display: flex;
+  gap: 6px;
+}
+
+.typing span {
+  width: 6px;
+  height: 6px;
+  background: #94a3b8;
+  border-radius: 50%;
+  animation: blink 1.4s infinite both;
+}
+
+.typing span:nth-child(2) { animation-delay: .2s; }
+.typing span:nth-child(3) { animation-delay: .4s; }
+
+@keyframes blink {
+  0% { opacity: .2; }
+  20% { opacity: 1; }
+  100% { opacity: .2; }
+}
+
+/* ======================================================
+   PENALTY BUTTON
+====================================================== */
+.penalty-btn {
+  position: fixed;
+  bottom: 96px;
+  right: 20px;
+  padding: 12px 18px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  color: #020617;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 20;
+}
+
+/* ======================================================
+   ADMIN DASHBOARD
+====================================================== */
+.admin-container {
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  backdrop-filter: blur(18px);
+}
+
+.admin-container h2 {
+  margin-top: 0;
+}
+
+.admin-container input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.15);
+  color: white;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.admin-actions button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
